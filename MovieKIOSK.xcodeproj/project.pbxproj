@@ -1,0 +1,313 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2A5482A2A6E5BD600662E3F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548292A6E5BD600662E3F /* main.swift */; };
+		D2A548312A6E5C3300662E3F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548302A6E5C3300662E3F /* Movie.swift */; };
+		D2A548332A6E5C4900662E3F /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548322A6E5C4900662E3F /* TimeTable.swift */; };
+		D2A548352A6E5C5400662E3F /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548342A6E5C5400662E3F /* Ticket.swift */; };
+		D2A548372A6E734000662E3F /* SeatInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548362A6E734000662E3F /* SeatInfo.swift */; };
+		D2A548392A6E7F7700662E3F /* KIOSKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548382A6E7F7700662E3F /* KIOSKManager.swift */; };
+		D2A5483B2A6E851D00662E3F /* messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5483A2A6E851D00662E3F /* messages.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D2A548242A6E5BD600662E3F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D2A548262A6E5BD600662E3F /* MovieKIOSK */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MovieKIOSK; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2A548292A6E5BD600662E3F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D2A548302A6E5C3300662E3F /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		D2A548322A6E5C4900662E3F /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
+		D2A548342A6E5C5400662E3F /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		D2A548362A6E734000662E3F /* SeatInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatInfo.swift; sourceTree = "<group>"; };
+		D2A548382A6E7F7700662E3F /* KIOSKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KIOSKManager.swift; sourceTree = "<group>"; };
+		D2A5483A2A6E851D00662E3F /* messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messages.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2A548232A6E5BD600662E3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2A5481D2A6E5BD600662E3F = {
+			isa = PBXGroup;
+			children = (
+				D2A548282A6E5BD600662E3F /* MovieKIOSK */,
+				D2A548272A6E5BD600662E3F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2A548272A6E5BD600662E3F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2A548262A6E5BD600662E3F /* MovieKIOSK */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2A548282A6E5BD600662E3F /* MovieKIOSK */ = {
+			isa = PBXGroup;
+			children = (
+				D2A548292A6E5BD600662E3F /* main.swift */,
+				D2A548302A6E5C3300662E3F /* Movie.swift */,
+				D2A548322A6E5C4900662E3F /* TimeTable.swift */,
+				D2A548342A6E5C5400662E3F /* Ticket.swift */,
+				D2A548362A6E734000662E3F /* SeatInfo.swift */,
+				D2A548382A6E7F7700662E3F /* KIOSKManager.swift */,
+				D2A5483A2A6E851D00662E3F /* messages.swift */,
+			);
+			path = MovieKIOSK;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2A548252A6E5BD600662E3F /* MovieKIOSK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2A5482D2A6E5BD600662E3F /* Build configuration list for PBXNativeTarget "MovieKIOSK" */;
+			buildPhases = (
+				D2A548222A6E5BD600662E3F /* Sources */,
+				D2A548232A6E5BD600662E3F /* Frameworks */,
+				D2A548242A6E5BD600662E3F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MovieKIOSK;
+			productName = MovieKIOSK;
+			productReference = D2A548262A6E5BD600662E3F /* MovieKIOSK */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2A5481E2A6E5BD600662E3F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					D2A548252A6E5BD600662E3F = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = D2A548212A6E5BD600662E3F /* Build configuration list for PBXProject "MovieKIOSK" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2A5481D2A6E5BD600662E3F;
+			productRefGroup = D2A548272A6E5BD600662E3F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2A548252A6E5BD600662E3F /* MovieKIOSK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2A548222A6E5BD600662E3F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2A548372A6E734000662E3F /* SeatInfo.swift in Sources */,
+				D2A548312A6E5C3300662E3F /* Movie.swift in Sources */,
+				D2A548332A6E5C4900662E3F /* TimeTable.swift in Sources */,
+				D2A548392A6E7F7700662E3F /* KIOSKManager.swift in Sources */,
+				D2A5483B2A6E851D00662E3F /* messages.swift in Sources */,
+				D2A5482A2A6E5BD600662E3F /* main.swift in Sources */,
+				D2A548352A6E5C5400662E3F /* Ticket.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		D2A5482B2A6E5BD600662E3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D2A5482C2A6E5BD600662E3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		D2A5482E2A6E5BD600662E3F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TH7TS2438;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		D2A5482F2A6E5BD600662E3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7TH7TS2438;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2A548212A6E5BD600662E3F /* Build configuration list for PBXProject "MovieKIOSK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2A5482B2A6E5BD600662E3F /* Debug */,
+				D2A5482C2A6E5BD600662E3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2A5482D2A6E5BD600662E3F /* Build configuration list for PBXNativeTarget "MovieKIOSK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2A5482E2A6E5BD600662E3F /* Debug */,
+				D2A5482F2A6E5BD600662E3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2A5481E2A6E5BD600662E3F /* Project object */;
+}
