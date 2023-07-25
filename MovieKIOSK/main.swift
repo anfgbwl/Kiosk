@@ -7,10 +7,7 @@
 
 import Foundation
 
-var movieList: [Movie] = []
-for t in titleList {
-    movieList.append(Movie(t, timeList))
-}
+var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
 
 print("\n5조 영화관에 오신걸 환영합니다")
 
@@ -21,25 +18,23 @@ while choice != "0" {
     
     switch choice {
     case "1":
+        //var ticket = Ticket()
         print("예매 차트\n예매하실 영화의 번호를 입력해주세요")
-        titleList.enumerated().forEach{ print("\($0.0+1). \($0.1)") }
-        let titleIndex = Int(readLine()!)!
-        let title = titleList[titleIndex-1]
-        let movie = 
+        movieList.enumerated().forEach({ print("\($0.0+1). \($0.1.title)")})
+        let movieIndex = Int(readLine()!)!
+        let movie = movieList[movieIndex-1]
         
         print("예매하실 상영 시간의 번호를 입력해주세요")
-        timeList.enumerated().forEach{ print("\($0.0+1). \($0.1)") }
+        movie.timeTable.enumerated().forEach{ print("\($0.0+1). \($0.1.time) \($0.1.price) \($0.1.remainedSeat)") }
         let timeIndex = Int(readLine()!)!
-        let time = timeList[timeIndex-1]
-        
-        let seats = movieList[movieList.firstIndex(where: {$0.title == title && $0.timeTable == time})!]
+        let time = movie.timeTable[timeIndex-1]
         
         print("예매하실 인원 수를 입력해주세요")
         let headCount = Int(readLine()!)!
         
         print("좌석을 선택해 주세요 (ex.A1 A2 A3)")
         print("    1  2  3  4  5  6  7  8  9  10")
-        for (i, pick) in seats.pickedSeat.enumerated() {
+        for (i, pick) in time.pickedSeat.enumerated() {
             print([" A ", " B ", " C "][i], terminator: "")
             for p in pick {
                 print(p, terminator: "")
@@ -47,15 +42,16 @@ while choice != "0" {
             print("")
         }
         let pickedSeat = readLine()!
-        seats.updateSeat(picked: pickedSeat)
+        time.updateSeat(picked: pickedSeat)
         
         print("회원님의 휴대전화 번호를 입력해주세요 (ex.010-0000-0000)")
         let phoneNumber = readLine()!
         
         print("결제를 진행하시겠습니까? (Y/N)")
         if readLine()! == "Y" {
+            movie.getPromotion()
             //잔고가 충분하면
-            bookedList.append(Ticket(title: title, timeTable: time, headCount: headCount, seats: pickedSeat, phoneNumber: phoneNumber))
+            bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: pickedSeat, phoneNumber: phoneNumber))
             print("예매가 완료되었습니다")
         } else {
             print("결제가 취소되었습니다")
@@ -87,7 +83,8 @@ while choice != "0" {
             print("예매를 취소하시겠습니까? (Y/N)")
             if readLine()! == "Y" {
                 print("예매가 취소되었습니다")
-                bookedList.removeAll(where: {$0.compareTicket() == pickedTicket.compareTicket()})
+                // 좌석 원상복구
+                bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
             } else {
                 print("메인 화면으로 이동합니다")
                 break

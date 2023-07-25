@@ -41,4 +41,15 @@ class TimeTable {
         }
         remainedSeat -= picked.count
     }
+    
+    func refundSeat(picked: String) {
+        let picked = picked.components(separatedBy: " ")
+        for pi in picked {
+            var p = pi
+            let rowStr = p.removeFirst()
+            let rowNum = ["A", "B", "C"].firstIndex(of: rowStr)
+            pickedSeat[rowNum!][Int(p)!-1] = "[ ]"
+        }
+        remainedSeat += picked.count
+    }
 }

@@ -12,13 +12,16 @@ struct Ticket {
     var timeTable: TimeTable
     var headCount: Int
     var seats: String
-    var bookedDate: Date = Date()
     var phoneNumber: String
     var payed: Int {
         timeTable.price * headCount
     }
     
     func displayTicket() {
-        //print(timeTable.title, time, headCount, seats)
+        print(title, time, headCount, seats, payed)
+    }
+    
+    func hashValue() -> String {
+        return title+timeTable.time+seats+phoneNumber
     }
 }
