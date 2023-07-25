@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F6EFDC92A6E5C3B003461F5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6EFDC82A6E5C3B003461F5 /* main.swift */; };
+		D2A5482A2A6E5BD600662E3F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548292A6E5BD600662E3F /* main.swift */; };
+		D2A548312A6E5C3300662E3F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548302A6E5C3300662E3F /* Movie.swift */; };
+		D2A548332A6E5C4900662E3F /* TimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548322A6E5C4900662E3F /* TimeTable.swift */; };
+		D2A548352A6E5C5400662E3F /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548342A6E5C5400662E3F /* Ticket.swift */; };
+		D2A548392A6E7F7700662E3F /* KIOSKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A548382A6E7F7700662E3F /* KIOSKManager.swift */; };
+		D2A5483B2A6E851D00662E3F /* messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A5483A2A6E851D00662E3F /* messages.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3F6EFDC32A6E5C3B003461F5 /* CopyFiles */ = {
+		D2A548242A6E5BD600662E3F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +28,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3F6EFDC52A6E5C3B003461F5 /* Kiosk */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Kiosk; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F6EFDC82A6E5C3B003461F5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D2A548262A6E5BD600662E3F /* MovieKIOSK */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MovieKIOSK; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2A548292A6E5BD600662E3F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D2A548302A6E5C3300662E3F /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		D2A548322A6E5C4900662E3F /* TimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTable.swift; sourceTree = "<group>"; };
+		D2A548342A6E5C5400662E3F /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		D2A548382A6E7F7700662E3F /* KIOSKManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KIOSKManager.swift; sourceTree = "<group>"; };
+		D2A5483A2A6E851D00662E3F /* messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messages.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3F6EFDC22A6E5C3B003461F5 /* Frameworks */ = {
+		D2A548232A6E5BD600662E3F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,66 +48,71 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F6EFDBC2A6E5C3A003461F5 = {
+		D2A5481D2A6E5BD600662E3F = {
 			isa = PBXGroup;
 			children = (
-				3F6EFDC72A6E5C3B003461F5 /* Kiosk */,
-				3F6EFDC62A6E5C3B003461F5 /* Products */,
+				D2A548282A6E5BD600662E3F /* MovieKIOSK */,
+				D2A548272A6E5BD600662E3F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		3F6EFDC62A6E5C3B003461F5 /* Products */ = {
+		D2A548272A6E5BD600662E3F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3F6EFDC52A6E5C3B003461F5 /* Kiosk */,
+				D2A548262A6E5BD600662E3F /* MovieKIOSK */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3F6EFDC72A6E5C3B003461F5 /* Kiosk */ = {
+		D2A548282A6E5BD600662E3F /* MovieKIOSK */ = {
 			isa = PBXGroup;
 			children = (
-				3F6EFDC82A6E5C3B003461F5 /* main.swift */,
+				D2A548292A6E5BD600662E3F /* main.swift */,
+				D2A548302A6E5C3300662E3F /* Movie.swift */,
+				D2A548322A6E5C4900662E3F /* TimeTable.swift */,
+				D2A548342A6E5C5400662E3F /* Ticket.swift */,
+				D2A548382A6E7F7700662E3F /* KIOSKManager.swift */,
+				D2A5483A2A6E851D00662E3F /* messages.swift */,
 			);
-			path = Kiosk;
+			path = MovieKIOSK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F6EFDC42A6E5C3B003461F5 /* Kiosk */ = {
+		D2A548252A6E5BD600662E3F /* MovieKIOSK */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3F6EFDCC2A6E5C3B003461F5 /* Build configuration list for PBXNativeTarget "Kiosk" */;
+			buildConfigurationList = D2A5482D2A6E5BD600662E3F /* Build configuration list for PBXNativeTarget "MovieKIOSK" */;
 			buildPhases = (
-				3F6EFDC12A6E5C3B003461F5 /* Sources */,
-				3F6EFDC22A6E5C3B003461F5 /* Frameworks */,
-				3F6EFDC32A6E5C3B003461F5 /* CopyFiles */,
+				D2A548222A6E5BD600662E3F /* Sources */,
+				D2A548232A6E5BD600662E3F /* Frameworks */,
+				D2A548242A6E5BD600662E3F /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Kiosk;
-			productName = Kiosk;
-			productReference = 3F6EFDC52A6E5C3B003461F5 /* Kiosk */;
+			name = MovieKIOSK;
+			productName = MovieKIOSK;
+			productReference = D2A548262A6E5BD600662E3F /* MovieKIOSK */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3F6EFDBD2A6E5C3B003461F5 /* Project object */ = {
+		D2A5481E2A6E5BD600662E3F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					3F6EFDC42A6E5C3B003461F5 = {
+					D2A548252A6E5BD600662E3F = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
 				};
 			};
-			buildConfigurationList = 3F6EFDC02A6E5C3B003461F5 /* Build configuration list for PBXProject "Kiosk" */;
+			buildConfigurationList = D2A548212A6E5BD600662E3F /* Build configuration list for PBXProject "MovieKIOSK" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -105,29 +120,34 @@
 				en,
 				Base,
 			);
-			mainGroup = 3F6EFDBC2A6E5C3A003461F5;
-			productRefGroup = 3F6EFDC62A6E5C3B003461F5 /* Products */;
+			mainGroup = D2A5481D2A6E5BD600662E3F;
+			productRefGroup = D2A548272A6E5BD600662E3F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3F6EFDC42A6E5C3B003461F5 /* Kiosk */,
+				D2A548252A6E5BD600662E3F /* MovieKIOSK */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3F6EFDC12A6E5C3B003461F5 /* Sources */ = {
+		D2A548222A6E5BD600662E3F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F6EFDC92A6E5C3B003461F5 /* main.swift in Sources */,
+				D2A548312A6E5C3300662E3F /* Movie.swift in Sources */,
+				D2A548332A6E5C4900662E3F /* TimeTable.swift in Sources */,
+				D2A548392A6E7F7700662E3F /* KIOSKManager.swift in Sources */,
+				D2A5483B2A6E851D00662E3F /* messages.swift in Sources */,
+				D2A5482A2A6E5BD600662E3F /* main.swift in Sources */,
+				D2A548352A6E5C5400662E3F /* Ticket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		3F6EFDCA2A6E5C3B003461F5 /* Debug */ = {
+		D2A5482B2A6E5BD600662E3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -187,7 +207,7 @@
 			};
 			name = Debug;
 		};
-		3F6EFDCB2A6E5C3B003461F5 /* Release */ = {
+		D2A5482C2A6E5BD600662E3F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -240,7 +260,7 @@
 			};
 			name = Release;
 		};
-		3F6EFDCD2A6E5C3B003461F5 /* Debug */ = {
+		D2A5482E2A6E5BD600662E3F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -251,7 +271,7 @@
 			};
 			name = Debug;
 		};
-		3F6EFDCE2A6E5C3B003461F5 /* Release */ = {
+		D2A5482F2A6E5BD600662E3F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -265,25 +285,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F6EFDC02A6E5C3B003461F5 /* Build configuration list for PBXProject "Kiosk" */ = {
+		D2A548212A6E5BD600662E3F /* Build configuration list for PBXProject "MovieKIOSK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F6EFDCA2A6E5C3B003461F5 /* Debug */,
-				3F6EFDCB2A6E5C3B003461F5 /* Release */,
+				D2A5482B2A6E5BD600662E3F /* Debug */,
+				D2A5482C2A6E5BD600662E3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3F6EFDCC2A6E5C3B003461F5 /* Build configuration list for PBXNativeTarget "Kiosk" */ = {
+		D2A5482D2A6E5BD600662E3F /* Build configuration list for PBXNativeTarget "MovieKIOSK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F6EFDCD2A6E5C3B003461F5 /* Debug */,
-				3F6EFDCE2A6E5C3B003461F5 /* Release */,
+				D2A5482E2A6E5BD600662E3F /* Debug */,
+				D2A5482F2A6E5BD600662E3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3F6EFDBD2A6E5C3B003461F5 /* Project object */;
+	rootObject = D2A5481E2A6E5BD600662E3F /* Project object */;
 }
