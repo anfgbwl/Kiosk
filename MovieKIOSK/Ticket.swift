@@ -2,7 +2,7 @@
 //  Ticket.swift
 //  MovieKIOSK
 //
-//  Created by 이재희 on 2023/07/24.
+//  Created by 5조 on 2023/07/24.
 //
 
 import Foundation
@@ -12,13 +12,16 @@ struct Ticket {
     var timeTable: TimeTable
     var headCount: Int
     var seats: String
-    var bookedDate: Date = Date()
     var phoneNumber: String
     var payed: Int {
         timeTable.price * headCount
     }
     
     func displayTicket() {
-        //print(timeTable.title, time, headCount, seats)
+        print(title, timeTable.time, headCount, seats, payed)
+    }
+    
+    func hashValue() -> String {
+        return title+timeTable.time+seats+phoneNumber
     }
 }

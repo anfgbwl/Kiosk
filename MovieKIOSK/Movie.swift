@@ -2,7 +2,7 @@
 //  Movie.swift
 //  MovieKIOSK
 //
-//  Created by 이재희 on 2023/07/24.
+//  Created by 5조 on 2023/07/24.
 //
 
 import Foundation
@@ -26,25 +26,47 @@ class Movie {
         }
     }
     
-    func setPromotion() {
-        
+    func getPromotion() {
+        print("프로모션이 존재하지 않습니다")
     }
 }
 
 class Elemental: Movie {
-    override func setPromotion() {
-        //가격 할인
+    init() {
+        super.init("엘리멘탈", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("22:45")])
+    }
+
+    override func getPromotion() {
+        // 가격 할인
+        print("[20%] 할인이 적용됩니다")
     }
 }
 
 class Barbie: Movie {
-    override func setPromotion() {
-        //바비인형 증정
+    init() {
+        super.init("바비", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("22:45")])
+    }
+    
+    override func getPromotion() {
+        // 바비인형 증정
+        print("증정품 [바비인형]을 수령하실 수 있습니다")
     }
 }
 
 class Conan: Movie {
-    override func setPromotion() {
-        //포토티켓 증정
+    init() {
+        super.init("명탐정 코난", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("22:45")])
+        
+    }
+    
+    override func getPromotion() {
+        // 포토티켓
+        print("증정품 [포토 티켓]을 수령하실 수 있습니다")
+    }
+}
+
+class Insidious: Movie {
+    init() {
+        super.init("인시디어스", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("22:45")])
     }
 }

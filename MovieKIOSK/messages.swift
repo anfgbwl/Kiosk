@@ -2,7 +2,7 @@
 //  messages.swift
 //  MovieKIOSK
 //
-//  Created by 이재희 on 2023/07/24.
+//  Created by 5조 on 2023/07/24.
 //
 
 import Foundation

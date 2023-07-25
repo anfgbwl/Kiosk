@@ -2,7 +2,7 @@
 //  TimeTable.swift
 //  MovieKIOSK
 //
-//  Created by 이재희 on 2023/07/24.
+//  Created by 5조 on 2023/07/24.
 //
 
 import Foundation
@@ -38,7 +38,21 @@ class TimeTable {
             let rowStr = p.removeFirst()
             let rowNum = ["A", "B", "C"].firstIndex(of: rowStr)
             pickedSeat[rowNum!][Int(p)!-1] = "[X]"
+            // 이미 선택된 자리를 입력할 때 나타낼 메시지 구현 필요
+            // 2개 이상의 좌석을 입력할 때 구분자 지정
+            // Enter 입력 전 입력값 저장하지 않기...ㅜㅠ
         }
         remainedSeat -= picked.count
+    }
+    
+    func refundSeat(picked: String) {
+        let picked = picked.components(separatedBy: " ")
+        for pi in picked {
+            var p = pi
+            let rowStr = p.removeFirst()
+            let rowNum = ["A", "B", "C"].firstIndex(of: rowStr)
+            pickedSeat[rowNum!][Int(p)!-1] = "[ ]"
+        }
+        remainedSeat += picked.count
     }
 }
