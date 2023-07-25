@@ -18,7 +18,7 @@ struct Ticket {
     }
     
     func displayTicket() {
-        print(title, time, headCount, seats, payed)
+        print(title, timeTable.time, headCount, seats, payed)
     }
     
     func hashValue() -> String {

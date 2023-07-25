@@ -84,6 +84,7 @@ while choice != "0" {
             if readLine()! == "Y" {
                 print("예매가 취소되었습니다")
                 // 좌석 원상복구
+                pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
             } else {
                 print("메인 화면으로 이동합니다")
