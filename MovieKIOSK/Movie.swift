@@ -33,7 +33,7 @@ class Movie {
 
 class Elemental: Movie {
     init() {
-        super.init("엘리멘탈", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("20:45")])
+        super.init("엘리멘탈", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("22:45")])
     }
 
     override func getPromotion() {
@@ -44,7 +44,7 @@ class Elemental: Movie {
 
 class Barbie: Movie {
     init() {
-        super.init("바비", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("20:45")])
+        super.init("바비", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("22:45")])
     }
     
     override func getPromotion() {
@@ -55,7 +55,7 @@ class Barbie: Movie {
 
 class Conan: Movie {
     init() {
-        super.init("명탐정 코난", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("20:45")])
+        super.init("명탐정 코난", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("22:45")])
         
     }
     
@@ -67,6 +67,6 @@ class Conan: Movie {
 
 class Insidious: Movie {
     init() {
-        super.init("인시디어스", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("20:45")])
+        super.init("인시디어스", [TimeTable("09:30"), TimeTable("11:00"), TimeTable("11:45"), TimeTable("12:30"), TimeTable("16:30"), TimeTable("20:20"), TimeTable("22:45")])
     }
 }
