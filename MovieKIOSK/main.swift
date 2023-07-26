@@ -19,10 +19,6 @@
  
  */
 
-
-
-
-
 import Foundation
 
 var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
@@ -73,26 +69,50 @@ while choice != "0" {
         let phoneNumber = readLine()!
         // 유효성 검사(5) : 입력값 검증(숫자, 구분자 "-")
         
-        print("결제를 진행하시겠습니까? (Y/N)")
-        if readLine()! == "Y" {
-            movie.getPromotion()
-            // (유효성 이후 추가 기능) 지갑 기능, 잔고 있을 때 결제 되고 없으면 못함
-            bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: pickedSeat, phoneNumber: phoneNumber))
-            print("예매가 완료되었습니다")
-        } else {
-            print("결제가 취소되었습니다")
+        var validInput = false
+        while !validInput {
+            print("결제를 진행하시겠습니까? (Y/N)")
+            let input = readLine()!
+            if input == "Y" {
+                movie.getPromotion()
+                // (유효성 이후 추가 기능) 지갑 기능, 잔고 있을 때 결제 되고 없으면 못함
+                bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: pickedSeat, phoneNumber: phoneNumber))
+                print("예매가 완료되었습니다")
+                validInput = true
+            } else if input == "N" {
+                print("결제가 취소되었습니다")
+                validInput = true
+            } else {
+                print("문자 입력이 잘못되었습니다. 다시 입력해주세요.")
+            }
         }
         // 유효성 검사(6) : Y/N이 아닐때 다시 입력하라는 메세지
 
     case "2":
         print("예매 내역 조회\n조회하실 휴대폰 번호를 입력해주세요 (ex.010-0000-0000)")
         let phoneNumber = readLine()!
-        
-        print("티켓 출력/예매 취소하실 영화 번호를 입력해주세요")
+
         let list = bookedList.filter { $0.phoneNumber == phoneNumber }
-        list.enumerated().forEach { print("\($0.0+1). ", terminator: ""); $0.1.displayTicket() }
-        let pickedIndex = Int(readLine()!)!-1 // pickedIndex == 0이면 처리
-        let pickedTicket = list[pickedIndex]
+            
+        if list.isEmpty {
+            print("예매 내역이 존재하지 않습니다. 홈으로 이동합니다.")
+            break
+        }
+
+        var pickedIndex: Int? = nil
+        while pickedIndex == nil {
+            print("티켓을 출력/취소하실 영화 번호를 입력해주세요")
+            list.enumerated().forEach { print("\($0.0+1). ", terminator: ""); $0.1.displayTicket() }
+            
+            if let input = readLine(), let index = Int(input), index > 0, index <= list.count {
+                pickedIndex = index - 1
+            } else {
+                print("유효하지 않은 입력입니다. 다시 시도해주세요.")
+            }
+        }
+
+        let pickedTicket = list[pickedIndex!]
+
         // 유효성 검사(7) : 예매내역 없을 시 없다는 문구와 함께 자동 메인으로 돌아가기
         
         pickedTicket.displayTicket()
