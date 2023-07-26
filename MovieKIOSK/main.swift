@@ -118,17 +118,6 @@ while choice != "0" {
         
 
         print(line)
-        print("결제를 진행하시겠습니까? (Y/N)")
-        if readLine()! == "Y" {
-            movie.getPromotion()
-            // (유효성 이후 추가 기능) 지갑 기능, 잔고 있을 때 결제 되고 없으면 못함
-            time.updateSeat(picked: selectedSeat)
-            bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber))
-
-            print("예매가 완료되었습니다")
-        } else {
-            print("결제가 취소되었습니다")
-
         var validInput = false
         while !validInput {
             print("결제를 진행하시겠습니까? (Y/N)")
@@ -136,7 +125,7 @@ while choice != "0" {
             if input == "Y" {
                 movie.getPromotion()
                 // (유효성 이후 추가 기능) 지갑 기능, 잔고 있을 때 결제 되고 없으면 못함
-                bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: pickedSeat, phoneNumber: phoneNumber))
+                bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber))
                 print("예매가 완료되었습니다")
                 validInput = true
             } else if input == "N" {
