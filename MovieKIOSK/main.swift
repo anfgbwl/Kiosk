@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Dispatch
 
 var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
 
@@ -56,15 +57,40 @@ while choice != "0" {
     second: while true {
         print(line)
         print("예매하실 상영 시간의 번호를 입력해주세요")
-        movie.timeTable.enumerated().forEach{ print("\($0.0+1). \($0.1.time) \($0.1.price) \($0.1.remainedSeat)/12") }
+        
+        // TimeTable 클래스의 인스턴스를 통해 getCurrentTime 함수 호출
+        let timeTableInstance = TimeTable("00:00")
+        let currentTime = timeTableInstance.getCurrentTime()
+        var validTime = 0
+        
+        print("현재 시간: \(currentTime)")
+        
+        for timeTable in movie.timeTable {
+            // 현재 시간과 timeTable.time을 비교하여 이후의 시간표만 출력
+            if timeTable.time >= currentTime {
+                validTime += 1
+                print("\(validTime). \(timeTable.time) \(timeTable.price) \(timeTable.remainedSeat)/12")
+            }
+        }
         print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
-        // fix: 유효성 검사하고 뒤로가기, 메인화면으로 이동 시키는 파트 구현하기!!
-        /* 참고 코드
-         if input == "<-" { break second }
-         if input == "0" { break first }
-         */
-        let timeIndex = Int(readLine()!)!
-        let time = movie.timeTable[timeIndex-1]
+                
+        var timeIndex: Int?
+        while true {
+            if let input = readLine(), !input.isEmpty {
+                if input == "<-" {
+                    break second
+                } else if input == "0" {
+                    break first
+                } else if let inputInt = Int(input), 1...validTime ~= inputInt {
+                    timeIndex = inputInt
+                    break
+                } else {
+                    print("예매하실 상영 시간의 번호를 확인해주세요.")
+                }
+            }
+        }
+        
+        let time = movie.timeTable[timeIndex!-1]
         
         
     third: while true {
@@ -153,13 +179,15 @@ while choice != "0" {
                 time.updateSeat(picked: selectedSeat)
                 bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber!))
                 print("예매가 완료되었습니다")
-                validInput = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
             } else if input == "N" {
                 print("결제가 취소되었습니다")
-                validInput = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
-            } else {
+            }else {
                 print("문자 입력이 잘못되었습니다. 다시 입력해주세요.\n")
             }
             
@@ -212,6 +240,7 @@ while choice != "0" {
         // 유효성 검사(7) : 예매내역 없을 시 없다는 문구와 함께 자동 메인으로 돌아가기
         
         pickedTicket.displayTicket()
+        
     third: while true {
         print(case2)
         print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
@@ -226,15 +255,16 @@ while choice != "0" {
             if readLine()! == "Y" {
                 
                 print("티켓이 출력중입니다.")
-                // (유효성 이후 추가 기능) n초 뒤 다음 print문
                 print(line)
                 print("티켓 출력이 완료되었습니다")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
             } else {
                 
-                print("메인 화면으로 이동합니다")
-                // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
             }
         case "2":
@@ -246,12 +276,14 @@ while choice != "0" {
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
-                print("메인 화면으로 이동합니다")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
             } else {
                 
                 print("메인 화면으로 이동합니다")
-                // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
             }
         default: break

@@ -31,6 +31,14 @@ class TimeTable {
         }
     }
     
+    // 현재 시간 HH:mm
+    func getCurrentTime() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let dateNow = formatter.string(from: Date())
+        return dateNow
+    }
+    
     func updateSeat(picked: String) {
         let picked = picked.components(separatedBy: " ")
         for pi in picked {
