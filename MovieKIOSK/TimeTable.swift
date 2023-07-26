@@ -31,6 +31,14 @@ class TimeTable {
         }
     }
     
+    // 현재 시간 HH:mm
+    func getCurrentTime() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let dateNow = formatter.string(from: Date())
+        return dateNow
+    }
+    
     // 좌석 형태 표현식
     let seatPattern = "^[A-C][1-4]$"
 
