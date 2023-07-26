@@ -5,35 +5,8 @@
 //  Created by 5조 on 2023/07/24.
 //
 
-/*
-1
- 
- 역할분담
- 1. 콘솔창꾸미기 : 허수빈
- 2. 유효성 검사
- (1)~(2) : 허수빈
- (3)~(4) : 김서온
- (5) : 이재희
- (6)~(7) : 이종범
- 
- ** 옵셔널 강제해제!! 확인 바랍니다.**
- 
- */
-
-
 import Foundation
 import Dispatch
-
-extension String {
-    // 전화번호 검증
-    func validatePhoneNumber() -> Bool {
-        let phoneRegEx = "^010-[0-9]{4}-[0-9]{4}$"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", phoneRegEx)
-        return predicate.evaluate(with: self)
-    }
-}
-
-
 
 var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
 
@@ -159,12 +132,11 @@ while choice != "0" {
             if selectedSeat == "<-" { break fourth }
             if selectedSeat == "0" { break first }
 
-            if !time.validateHeadCountAndSelectedSeat(selectedSeat, headCount: headCount) {
-                print("잘못 입력했습니다. 다시 입력해주세요.")
-            } else if time.isSeatAlreadySelected(selectedSeat) {
-                print("이미 선택된 좌석입니다. 다른 좌석을 선택해주세요.")
+            if !selectedSeat.validateSeat(headCount: headCount) {
+                print("잘못 입력했습니다. 다시 입력해주세요.\n")
+            } else if !selectedSeat.isSeatAlreadySelected(pickedSeat: time.pickedSeat) {
+                print("이미 선택된 좌석입니다. 다른 좌석을 선택해주세요.\n")
             } else {
-                time.addToSelectedSeats(selectedSeat)
                 break
             }
         } while true
@@ -304,7 +276,6 @@ while choice != "0" {
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
-                selectedSeats.removeAll { seats in seats.contains(pickedTicket.seats) }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
                 RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
