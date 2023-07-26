@@ -46,3 +46,13 @@ extension String {
         return true
     }
 }
+
+import Foundation
+
+func Delay3Seconds() {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        print("메인 화면으로 이동합니다")
+    }
+    
+    RunLoop.current.run(until: Date().addingTimeInterval(3))
+}

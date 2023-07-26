@@ -179,14 +179,10 @@ while choice != "0" {
                 time.updateSeat(picked: selectedSeat)
                 bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber!))
                 print("예매가 완료되었습니다")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
-                RunLoop.current.run(until: Date().addingTimeInterval(3))
-                break first
+                Delay3Seconds()
             } else if input == "N" {
                 print("결제가 취소되었습니다")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
-                RunLoop.current.run(until: Date().addingTimeInterval(3))
-                break first
+                Delay3Seconds()
             }else {
                 print("문자 입력이 잘못되었습니다. 다시 입력해주세요.\n")
             }
@@ -257,15 +253,11 @@ while choice != "0" {
                 print("티켓이 출력중입니다.")
                 print(line)
                 print("티켓 출력이 완료되었습니다")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
-                RunLoop.current.run(until: Date().addingTimeInterval(3))
-                break first
+                Delay3Seconds()
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
             } else {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
-                RunLoop.current.run(until: Date().addingTimeInterval(3))
-                break first
+                Delay3Seconds()
             }
         case "2":
             print(line)
@@ -275,16 +267,11 @@ while choice != "0" {
                 print("예매가 취소되었습니다")
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
-                bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
-                RunLoop.current.run(until: Date().addingTimeInterval(3))
+                Delay3Seconds()
                 break first
             } else {
                 
-                print("메인 화면으로 이동합니다")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
-                RunLoop.current.run(until: Date().addingTimeInterval(3))
-                break first
+                Delay3Seconds()
             }
         default: break
         }
