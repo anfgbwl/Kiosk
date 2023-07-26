@@ -201,8 +201,8 @@ while choice != "0" {
         print(line)
         print("예매 내역 조회\n조회하실 휴대폰 번호를 입력해주세요 (ex.010-0000-0000)\n\n<- : 뒤로 가기")
         let phoneNumber = readLine()!
-        
         if phoneNumber == "<-" { break }
+        
         var list = bookedList.filter { $0.phoneNumber == phoneNumber }
         
         if list.isEmpty {
