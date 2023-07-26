@@ -6,6 +6,7 @@
 //
 
 /*
+1
  
  역할분담
  1. 콘솔창꾸미기 : 허수빈
@@ -21,6 +22,7 @@
 
 
 import Foundation
+import Dispatch
 
 extension String {
     // 전화번호 검증
@@ -30,6 +32,8 @@ extension String {
         return predicate.evaluate(with: self)
     }
 }
+
+
 
 var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
 
@@ -209,13 +213,15 @@ while choice != "0" {
                 time.updateSeat(picked: selectedSeat)
                 bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber!))
                 print("예매가 완료되었습니다")
-                validInput = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
             } else if input == "N" {
                 print("결제가 취소되었습니다")
-                validInput = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
-            } else {
+            }else {
                 print("문자 입력이 잘못되었습니다. 다시 입력해주세요.\n")
             }
             
@@ -232,8 +238,8 @@ while choice != "0" {
         print(line)
         print("예매 내역 조회\n조회하실 휴대폰 번호를 입력해주세요 (ex.010-0000-0000)\n\n<- : 뒤로 가기")
         let phoneNumber = readLine()!
-        
         if phoneNumber == "<-" { break }
+        
         var list = bookedList.filter { $0.phoneNumber == phoneNumber }
         
         if list.isEmpty {
@@ -283,15 +289,16 @@ while choice != "0" {
             if readLine()! == "Y" {
                 
                 print("티켓이 출력중입니다.")
-                // (유효성 이후 추가 기능) n초 뒤 다음 print문
                 print(line)
                 print("티켓 출력이 완료되었습니다")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
             } else {
                 
-                print("메인 화면으로 이동합니다")
-                // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
             }
         case "2":
@@ -304,12 +311,14 @@ while choice != "0" {
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
                 selectedSeats.removeAll { seats in seats.contains(pickedTicket.seats) }
-                print("메인 화면으로 이동합니다")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
             } else {
                 
                 print("메인 화면으로 이동합니다")
-                // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { print("메인 화면으로 이동합니다") })
+                RunLoop.current.run(until: Date().addingTimeInterval(3))
                 break first
             }
         default: break
