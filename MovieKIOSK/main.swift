@@ -129,16 +129,23 @@ while choice != "0" {
             selectedSeat = readLine()!
             if selectedSeat == "<-" { break fourth }
             if selectedSeat == "0" { break first }
+
             if !time.validateHeadCountAndSelectedSeat(selectedSeat, headCount: headCount) {
-                print("잘못 입력했습니다. 다시 입력해주세요.\n")
+                print("잘못 입력했습니다. 다시 입력해주세요.")
+            } else if time.isSeatAlreadySelected(selectedSeat) {
+                print("이미 선택된 좌석입니다. 다른 좌석을 선택해주세요.")
+            } else {
+                time.addToSelectedSeats(selectedSeat)
+                break
             }
-        } while !time.validateHeadCountAndSelectedSeat(selectedSeat, headCount: headCount)
+        } while true
         // 유효성 검사(4) : 입력값 검증
         // - 완료
         // - TimeTable validateSelectedSeat 함수 생성
         // - 예매인원과 동일한 숫자로 입력할 수 있게 검증(validateHeadCountAndSelectedSeat 함수 생성)
         // - 2개 이상의 좌석을 예매할 때 띄어쓰기로 구분자 지정
-        // (아직) 이미 선택된 자리를 입력할 때 나타낼 메시지 구현 필요
+        // - 예매완료된 좌석 선택 불가 및 재선택 안내
+        
         
     fifth: while true {
         print(line)
@@ -264,6 +271,7 @@ while choice != "0" {
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
+                selectedSeats.removeAll { seats in seats.contains(pickedTicket.seats) }
                 print("메인 화면으로 이동합니다")
                 break first
             } else {
