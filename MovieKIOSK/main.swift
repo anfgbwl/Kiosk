@@ -19,10 +19,6 @@
  
  */
 
-
-
-
-
 import Foundation
 
 var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
@@ -41,21 +37,30 @@ while choice != "0" {
         let movieIndex = Int(readLine()!)!
         let movie = movieList[movieIndex-1]
         // 유효성 검사(1) : 1,2,0 외 번호 입력 시 오류문 출력 후 재 안내
-        
-//        labeledStatements => while 문에 이름 달아서 해당 구문으로 돌아갈 수 있음
-        
+                
         print("예매하실 상영 시간의 번호를 입력해주세요")
-        movie.timeTable.enumerated().forEach{ print("\($0.0+1). \($0.1.time) \($0.1.price) \($0.1.remainedSeat)/30") }
+        movie.timeTable.enumerated().forEach{ print("\($0.0+1). \($0.1.time) \($0.1.price) \($0.1.remainedSeat)/12") }
         let timeIndex = Int(readLine()!)!
         let time = movie.timeTable[timeIndex-1]
         // 유효성 검사(2) : 1,2,3,4 외 번호 입력 시 오류문 출력 후 재 안내
-
-        print("예매하실 인원 수를 입력해주세요")
-        let headCount = Int(readLine()!)!
-        // 유효성 검사(3) : 최대 인원 설정(1...3)
+        
+        var headCount: Int = 0
+        while true {
+            print("예매하실 인원 수를 입력해주세요. (최대 3인)")
+            guard let inputHeadCount = readLine(), let input = Int(inputHeadCount), (1...3).contains(input) else {
+                print("예매인원을 확인해주세요.")
+                continue
+            }
+            headCount = input
+            break
+        }
+        // 유효성 검사(3) : 예매인원 설정(최대 3인)
+        // - 완료
+        // - 별도의 함수 생성하지 않고 while문으로 구현
+        
         
         print("좌석을 선택해 주세요 (ex.A1 A2 A3)")
-        print("    1  2  3  4  5  6  7  8  9  10")
+        print("    1  2  3  4")
         for (i, pick) in time.pickedSeat.enumerated() {
             print([" A ", " B ", " C "][i], terminator: "")
             for p in pick {
@@ -63,11 +68,20 @@ while choice != "0" {
             }
             print("")
         }
-        let pickedSeat = readLine()!
-        time.updateSeat(picked: pickedSeat)
-        // 이미 선택된 자리를 입력할 때 나타낼 메시지 구현 필요
-        // 2개 이상의 좌석을 입력할 때 구분자 지정
-        // 유효성 검사(4) : 입력값 검증(문자+숫자 or list에 있는 목록으로만)
+        var selectedSeat: String
+        repeat {
+            print("좌석을 선택해 주세요 (ex. A1 A2 A3)")
+            selectedSeat = readLine()!
+            if !time.validateHeadCountAndSelectedSeat(selectedSeat, headCount: headCount) {
+                print("잘못 입력했습니다. 다시 입력해주세요.")
+            }
+        } while !time.validateHeadCountAndSelectedSeat(selectedSeat, headCount: headCount)
+        // 유효성 검사(4) : 입력값 검증
+        // - 완료
+        // - TimeTable validateSelectedSeat 함수 생성
+        // - 예매인원과 동일한 숫자로 입력할 수 있게 검증(validateHeadCountAndSelectedSeat 함수 생성)
+        // - 2개 이상의 좌석을 예매할 때 띄어쓰기로 구분자 지정
+        // (아직) 이미 선택된 자리를 입력할 때 나타낼 메시지 구현 필요
         
         print("회원님의 휴대전화 번호를 입력해주세요 (ex.010-0000-0000)")
         let phoneNumber = readLine()!
@@ -77,7 +91,8 @@ while choice != "0" {
         if readLine()! == "Y" {
             movie.getPromotion()
             // (유효성 이후 추가 기능) 지갑 기능, 잔고 있을 때 결제 되고 없으면 못함
-            bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: pickedSeat, phoneNumber: phoneNumber))
+            time.updateSeat(picked: selectedSeat)
+            bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber))
             print("예매가 완료되었습니다")
         } else {
             print("결제가 취소되었습니다")

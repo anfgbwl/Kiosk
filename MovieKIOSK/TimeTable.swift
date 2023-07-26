@@ -15,8 +15,8 @@ class TimeTable {
         default: return 18000
         }
     }
-    var pickedSeat: [[String]] = Array(repeating:Array(repeating: "[ ]", count: 10), count: 3)// 이차원배열 -> 이미 예매된 자리 "x" 표시
-    var remainedSeat = 30 // 남은 좌석 수
+    var pickedSeat: [[String]] = Array(repeating:Array(repeating: "[ ]", count: 4), count: 3)// 이차원배열 -> 이미 예매된 자리 "x" 표시
+    var remainedSeat = 12 // 남은 좌석 수
     
     init(_ time: String) {
         self.time = time
@@ -31,6 +31,27 @@ class TimeTable {
         }
     }
     
+    // 좌석 입력 형태 검증 함수
+    func validateSelectedSeat(_ input: String) -> Bool {
+        let pattern = "^[A-C][1-4]$"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        let range = NSRange(location: 0, length: input.utf16.count)
+        return regex.firstMatch(in: input, options: [], range: range) != nil
+    }
+    
+    // 인원수 == 좌석수 검증
+    func validateHeadCountAndSelectedSeat(_ input: String, headCount: Int) -> Bool {
+    let pattern = "^[A-C][1-4]$"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        let range = NSRange(location: 0, length: input.utf16.count)
+
+        let selectedSeats = input.components(separatedBy: " ")
+        let uniqueSeats = Set(selectedSeats)
+        let validSeats = selectedSeats.filter { validateSelectedSeat($0) }
+
+        return uniqueSeats.count == validSeats.count && validSeats.count == headCount
+    }
+    
     func updateSeat(picked: String) {
         let picked = picked.components(separatedBy: " ")
         for pi in picked {
@@ -40,7 +61,6 @@ class TimeTable {
             pickedSeat[rowNum!][Int(p)!-1] = "[X]"
             // 이미 선택된 자리를 입력할 때 나타낼 메시지 구현 필요
             // 2개 이상의 좌석을 입력할 때 구분자 지정
-            // Enter 입력 전 입력값 저장하지 않기...ㅜㅠ
         }
         remainedSeat -= picked.count
     }
