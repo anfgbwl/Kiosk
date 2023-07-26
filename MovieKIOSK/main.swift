@@ -77,18 +77,49 @@ while choice != "0" {
         // 유효성 검사(2) : 1,2,3,4 외 번호 입력 시 오류문 출력 후 재 안내/ 일단 완료
         
         
-    second: while true {
-        print(line)
-        print("예매하실 상영 시간의 번호를 입력해주세요")
-        movie.timeTable.enumerated().forEach{ print("\($0.0+1). \($0.1.time) \($0.1.price) \($0.1.remainedSeat)/12") }
-        print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         // fix: 유효성 검사하고 뒤로가기, 메인화면으로 이동 시키는 파트 구현하기!!
         /* 참고 코드
          if input == "<-" { break second }
          if input == "0" { break first }
          */
-        let timeIndex = Int(readLine()!)!
-        let time = movie.timeTable[timeIndex-1]
+        
+    second: while true {
+        print(line)
+        print("예매하실 상영 시간의 번호를 입력해주세요")
+        
+        // TimeTable 클래스의 인스턴스를 통해 getCurrentTime 함수 호출
+        let timeTableInstance = TimeTable("00:00")
+        let currentTime = timeTableInstance.getCurrentTime()
+        var validTime = 0
+        
+        print("현재 시간: \(currentTime)")
+        
+        for timeTable in movie.timeTable {
+            // 현재 시간과 timeTable.time을 비교하여 이후의 시간표만 출력
+            if timeTable.time >= currentTime {
+                validTime += 1
+                print("\(validTime). \(timeTable.time) \(timeTable.price) \(timeTable.remainedSeat)/12")
+            }
+        }
+        print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
+                
+        var timeIndex: Int?
+        while true {
+            if let input = readLine(), !input.isEmpty {
+                if input == "<-" {
+                    break second
+                } else if input == "0" {
+                    break first
+                } else if let inputInt = Int(input), 1...validTime ~= inputInt {
+                    timeIndex = inputInt
+                    break
+                } else {
+                    print("예매하실 상영 시간의 번호를 확인해주세요.")
+                }
+            }
+        }
+        
+        let time = movie.timeTable[timeIndex!-1]
         
         
     third: while true {
@@ -237,6 +268,7 @@ while choice != "0" {
         // 유효성 검사(7) : 예매내역 없을 시 없다는 문구와 함께 자동 메인으로 돌아가기
         
         pickedTicket.displayTicket()
+        
     third: while true {
         print(case2)
         print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
