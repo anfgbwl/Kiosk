@@ -13,9 +13,7 @@ struct Ticket {
     var headCount: Int
     var seats: String
     var phoneNumber: String
-    var payed: Int {
-        timeTable.price * headCount
-    }
+    var payed: Int
     
     func displayTicket() {
         print(title, timeTable.time, headCount, seats, payed)

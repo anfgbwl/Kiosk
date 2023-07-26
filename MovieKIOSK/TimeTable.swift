@@ -11,7 +11,7 @@ class TimeTable {
     var time: String // 상영시간
     var price: Int {
         switch time {
-        case "09:30", "22:45" : return 10000
+        case "09:30", "22:45", "23:55" : return 10000
         default: return 18000
         }
     }
@@ -46,8 +46,6 @@ class TimeTable {
             let rowStr = p.removeFirst()
             let rowNum = ["A", "B", "C"].firstIndex(of: rowStr)
             pickedSeat[rowNum!][Int(p)!-1] = "[X]"
-            // 이미 선택된 자리를 입력할 때 나타낼 메시지 구현 필요
-            // 2개 이상의 좌석을 입력할 때 구분자 지정
         }
         remainedSeat -= picked.count
     }

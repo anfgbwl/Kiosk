@@ -8,6 +8,7 @@
 import Foundation
 
 var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
+var userBalance = [String: Int]()
 
 print("\n5조 영화관에 오신걸 환영합니다")
 
@@ -61,6 +62,7 @@ while choice != "0" {
         let timeTableInstance = TimeTable("00:00")
         let currentTime = timeTableInstance.getCurrentTime()
         var validTime = 0
+        var availableList: [TimeTable] = []
         
         print("현재 시간: \(currentTime)")
         
@@ -68,6 +70,7 @@ while choice != "0" {
             // 현재 시간과 timeTable.time을 비교하여 이후의 시간표만 출력
             if timeTable.time >= currentTime {
                 validTime += 1
+                availableList.append(timeTable)
                 print("\(validTime). \(timeTable.time) \(timeTable.price) \(timeTable.remainedSeat)/12")
             }
         }
@@ -81,15 +84,14 @@ while choice != "0" {
                 } else if input == "0" {
                     break first
                 } else if let inputInt = Int(input), 1...validTime ~= inputInt {
-                    timeIndex = inputInt
+                    timeIndex = movie.timeTable.firstIndex(where: {$0.time == availableList[inputInt-1].time}) //fixed
                     break
                 } else {
                     print("예매하실 상영 시간의 번호를 확인해주세요.")
                 }
             }
         }
-        
-        let time = movie.timeTable[timeIndex!-1]
+        let time = movie.timeTable[timeIndex!]
         
         
     third: while true {
@@ -172,10 +174,18 @@ while choice != "0" {
             if input == "<-" { break }
             if input == "0" { break first }
             if input == "Y" {
-                movie.getPromotion()
-                // (유효성 이후 추가 기능) 지갑 기능, 잔고 있을 때 결제 되고 없으면 못함
+                let balance = userBalance[phoneNumber!, default: Int.random(in: 5000...50000)]
+                print("현재 고객님의 잔고는 \(balance)원 입니다")
+                let (price, discount) = (Double(time.price), movie.getPromotion())
+                let totalPrice = Int(price - price * discount) * headCount
+                if balance < totalPrice {
+                    print("잔고가 부족합니다\n메인 화면으로 이동합니다")
+                    break first
+                }
+                userBalance[phoneNumber!, default: balance] -= totalPrice
                 time.updateSeat(picked: selectedSeat)
-                bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber!))
+                bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber!, payed: totalPrice))
+                print("\(totalPrice)원이 결제되었습니다\n현재 고객님의 잔고는 \(userBalance[phoneNumber!]!)원 입니다")
                 print("예매가 완료되었습니다")
                 Delay3Seconds()
                 break first
@@ -275,6 +285,8 @@ while choice != "0" {
                 print(line)
                 print("예매가 취소되었습니다")
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
+                userBalance[phoneNumber!]! += pickedTicket.payed
+                print("\(pickedTicket.payed)원이 환불되었습니다\n고객님의 현재 잔고는 \(userBalance[phoneNumber!]!)원 입니다")
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
                 Delay3Seconds()
