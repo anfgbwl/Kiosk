@@ -139,24 +139,28 @@ while choice != "0" {
         // 유효성 검사(6) : Y/N이 아닐때 다시 입력하라는 메세지
 
     case "2":
+        print(line)
         print("예매 내역 조회\n조회하실 휴대폰 번호를 입력해주세요 (ex.010-0000-0000)")
         let phoneNumber = readLine()!
 
         let list = bookedList.filter { $0.phoneNumber == phoneNumber }
             
         if list.isEmpty {
+            print(line)
             print("예매 내역이 존재하지 않습니다. 홈으로 이동합니다.")
             break
         }
 
         var pickedIndex: Int? = nil
         while pickedIndex == nil {
+            print(line)
             print("티켓을 출력/취소하실 영화 번호를 입력해주세요")
             list.enumerated().forEach { print("\($0.0+1). ", terminator: ""); $0.1.displayTicket() }
             
             if let input = readLine(), let index = Int(input), index > 0, index <= list.count {
                 pickedIndex = index - 1
             } else {
+                print(line)
                 print("유효하지 않은 입력입니다. 다시 시도해주세요.")
             }
         }
@@ -169,26 +173,33 @@ while choice != "0" {
         print(case2)
         switch readLine()! {
         case "1":
+            print(line)
             print("티켓을 출력하시겠습니까? (Y/N)")
             if readLine()! == "Y" {
+              
                 print("티켓이 출력중입니다.")
                 // (유효성 이후 추가 기능) n초 뒤 다음 print문
+                print(line)
                 print("티켓 출력이 완료되었습니다")
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
             } else {
+           
                 print("메인 화면으로 이동합니다")
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
                 break
             }
         case "2":
+            print(line)
             print("예매를 취소하시겠습니까? (Y/N)")
             if readLine()! == "Y" {
+                print(line)
                 print("예매가 취소되었습니다")
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
                 print("메인 화면으로 이동합니다")
             } else {
+               
                 print("메인 화면으로 이동합니다")
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
                 break
