@@ -81,12 +81,6 @@ while choice != "0" {
         // 유효성 검사(2) : 1,2,3,4 외 번호 입력 시 오류문 출력 후 재 안내/ 일단 완료
         
         
-        // fix: 유효성 검사하고 뒤로가기, 메인화면으로 이동 시키는 파트 구현하기!!
-        /* 참고 코드
-         if input == "<-" { break second }
-         if input == "0" { break first }
-         */
-        
     second: while true {
         print(line)
         print("예매하실 상영 시간의 번호를 입력해주세요")
