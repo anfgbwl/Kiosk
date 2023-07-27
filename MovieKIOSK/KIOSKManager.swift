@@ -47,9 +47,14 @@ extension String {
     }
 }
 
-func Delay3Seconds() {
+func delay3Seconds() {
     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
         print("\n메인 화면으로 이동합니다")
     }
     RunLoop.current.run(until: Date().addingTimeInterval(3))
+}
+
+func isTimeCheck(_ startTime: Date, _ endTime: Date) -> Bool {
+    let currentTime = Date()
+    return currentTime >= startTime && currentTime <= endTime
 }
