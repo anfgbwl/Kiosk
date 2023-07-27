@@ -15,18 +15,15 @@ class TimeTable {
         let minutes = Int(timeComponents[1]) ?? 0
         
         // 조조 할인 (07:00 ~ 09:50)
-        if (hour == 7 && minutes >= 0) || (hour == 8) || (hour == 9 && minutes <= 50) {
-            return 10000
-        }
+        if (hour == 7 && minutes >= 0) || (hour == 8) || (hour == 9 && minutes <= 50) { return 10000 }
         
         // 심야 할인 (22:45 ~ 23:59)
-        if (hour == 22 && minutes >= 45) || (hour == 23) {
-            return 10000
-        }
+        if (hour == 22 && minutes >= 45) || (hour == 23) { return 10000 }
         
-        return 18000 // 그 외의 시간
+        return 18000 // 일반 가격
     }
-    var pickedSeat: [[String]] = Array(repeating:Array(repeating: "[ ]", count: 4), count: 3)// 이차원배열 -> 이미 예매된 자리 "x" 표시
+    
+    var pickedSeat: [[String]] = Array(repeating:Array(repeating: "[ ]", count: 4), count: 3) // 이차원배열 -> 이미 예매된 자리 "x" 표시
     var remainedSeat = 12 // 남은 좌석 수
 
     init(_ time: String) {
@@ -42,7 +39,6 @@ class TimeTable {
         }
     }
     
-    // 현재 시간 HH:mm
     func getCurrentTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
