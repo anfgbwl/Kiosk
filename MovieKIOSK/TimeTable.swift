@@ -8,7 +8,7 @@
 import Foundation
 
 class TimeTable {
-    var time: String // 상영시간
+    var time: String 
     var price: Int {
         let timeComponents = time.split(separator: ":")
         let hour = Int(timeComponents[0]) ?? 0

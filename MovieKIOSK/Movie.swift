@@ -16,16 +16,6 @@ class Movie {
         self.timeTable = timetable
     }
     
-    func displayTitle() {
-        print(title)
-    }
-    
-    func displayTimeTable() {
-        for (i, t) in timeTable.enumerated() {
-            print("\(i+1). \(t.time) \(t.price)")
-        }
-    }
-    
     func getPromotion() -> Double {
         print("프로모션이 존재하지 않습니다")
         return 0
@@ -38,7 +28,6 @@ class Elemental: Movie {
     }
 
     override func getPromotion() -> Double {
-        // 가격 할인
         print("해당 영화는 [20%] 할인이 적용됩니다.")
         return 0.2
     }
@@ -50,7 +39,6 @@ class Barbie: Movie {
     }
     
     override func getPromotion() -> Double {
-        // 바비인형 증정
         print("증정품 [바비인형]을 수령하실 수 있습니다.")
         return 0
     }
@@ -63,7 +51,6 @@ class Conan: Movie {
     }
     
     override func getPromotion() -> Double {
-        // 포토티켓
         print("증정품 [포토 티켓]을 수령하실 수 있습니다.")
         return 0
     }

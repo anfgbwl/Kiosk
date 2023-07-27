@@ -13,7 +13,6 @@ var userBalance = [String: Int]()
 func printMessage() {
     let timeTableInstance = TimeTable("00:00")
     let currentTime = timeTableInstance.getCurrentTime()
-    var validTime = 0
     
     print("\n현재 시간: \(currentTime)\n")
     print("----------------------------------")
@@ -52,11 +51,8 @@ while choice != "0" {
     case "0":
         print("0번 선택: 프로그램 종료")
     default:
-        //print(errorLine)
         print("❌잘못된 입력입니다. 메뉴 번호를 똑바로 보고 다시 입력해주세요.❌")
     }
-    // 유효성 검사(1) : 1,2,0 외 번호 입력 시 오류문 출력 후 재 안내/ 일단 완료
-    
     
     switch choice {
     case "1":
@@ -64,7 +60,6 @@ while choice != "0" {
         print(line)
         print("[ 예매 차트 ]\n")
         movieList.enumerated().forEach({ print("\($0.0+1). \($0.1.title)")})
-        //print("예매하실 영화의 번호를 입력해주세요.")
         print("\n<- : 뒤로 가기")
         var movieIndex: Int?
         repeat {
@@ -78,14 +73,11 @@ while choice != "0" {
             print("❌잘못된 입력입니다. 영화 번호를 다시 입력해주세요.❌")
         } while movieIndex == nil
         let movie = movieList[movieIndex!]
-        // 유효성 검사(2) : 1,2,3,4 외 번호 입력 시 오류문 출력 후 재 안내/ 일단 완료
-        
         
     second: while true {
         print(line)
-        //print("예매하실 상영 시간의 번호를 입력해주세요.")
         print("[ 상영 시간표 ]\n")
-        // TimeTable 클래스의 인스턴스를 통해 getCurrentTime 함수 호출
+
         let timeTableInstance = TimeTable("00:00")
         let currentTime = timeTableInstance.getCurrentTime()
         var validTime = 0
@@ -96,7 +88,6 @@ while choice != "0" {
         
         print("   [시간]  [가격] [잔여 좌석]")
         for timeTable in movie.timeTable {
-            // 현재 시간과 timeTable.time을 비교하여 이후의 시간표만 출력
             if timeTable.time >= currentTime {
                 validTime += 1
                 availableList.append(timeTable)
@@ -139,10 +130,6 @@ while choice != "0" {
                 print("❌예매인원을 확인해주세요.❌")
             }
         }
-        // 유효성 검사(3) : 예매인원 설정(최대 3인)
-        // - 완료
-        // - 별도의 함수 생성하지 않고 while문으로 구현
-        
         
     fourth: while true {
         var selectedSeat: String
@@ -171,13 +158,6 @@ while choice != "0" {
                 break
             }
         } while true
-        // 유효성 검사(4) : 입력값 검증
-        // - 완료
-        // - TimeTable validateSelectedSeat 함수 생성
-        // - 예매인원과 동일한 숫자로 입력할 수 있게 검증(validateHeadCountAndSelectedSeat 함수 생성)
-        // - 2개 이상의 좌석을 예매할 때 띄어쓰기로 구분자 지정
-        // - 예매완료된 좌석 선택 불가 및 재선택 안내
-        
         
     fifth: while true {
         print(line)
@@ -194,8 +174,6 @@ while choice != "0" {
             }
             print("❌휴대전화 번호의 형식이 올바르지 않습니다.❌")
         }
-        // 유효성 검사(5) : 입력값 검증(숫자, 구분자 "-")
-        
         
         print(line)
         print("결제를 진행하시겠습니까? (Y/N)\n\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
@@ -241,7 +219,6 @@ while choice != "0" {
             }
             
         }
-        // 유효성 검사(6) : Y/N이 아닐때 다시 입력하라는 메세지
     }
     }
     }
@@ -299,8 +276,6 @@ while choice != "0" {
         print(case2)
         print("<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         
-        // 유효성 검사(7) : 예매내역 없을 시 없다는 문구와 함께 자동 메인으로 돌아가기
-        
     third: while true {
         switch readLine()! {
         case "<-" :
@@ -315,7 +290,6 @@ while choice != "0" {
                 print("티켓 출력이 완료되었습니다.")
                 delay3Seconds()
                 break first
-                // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
             } else {
                 delay3Seconds()
                 break first
@@ -326,7 +300,7 @@ while choice != "0" {
             if readLine()! == "Y" {
                 print(line)
                 print("예매가 취소되었습니다.")
-                // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
+
                 userBalance[phoneNumber!]! += pickedTicket.payed
                 print("\(pickedTicket.payed)원이 환불되었습니다.\n고객님의 현재 잔고는 \(userBalance[phoneNumber!]!)원 입니다.")
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
