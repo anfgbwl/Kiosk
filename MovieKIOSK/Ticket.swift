@@ -16,7 +16,7 @@ struct Ticket {
     var payed: Int
     
     func displayTicket() {
-        print(title, timeTable.time, headCount, seats, payed)
+        print("\(title)  \(timeTable.time)  \(payed)    \(headCount)     \(seats)")
     }
     
     func hashValue() -> String {
