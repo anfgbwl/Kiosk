@@ -10,6 +10,29 @@ import Foundation
 var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
 var userBalance = [String: Int]()
 
+func printMessage() {
+    let timeTableInstance = TimeTable("00:00")
+    let currentTime = timeTableInstance.getCurrentTime()
+    var validTime = 0
+    
+    print("\n현재 시간: \(currentTime)\n")
+    for movie in movieList {
+        for m in movie.timeTable {
+            if m.time >= currentTime {
+                print("\(movie.title) \(m.time)  \(m.price)  \(m.remainedSeat)/12")
+                break
+            }
+        }
+    }
+}
+
+let timer = DispatchSource.makeTimerSource()
+timer.schedule(deadline: .now(), repeating: .seconds(20), leeway: .seconds(0))
+timer.setEventHandler {
+    printMessage()
+}
+timer.resume()
+
 print("\n\t🎬🍿\n[5조 영화관에 오신걸 환영합니다🥳]")
 
 var choice = "-1"
@@ -309,3 +332,5 @@ while choice != "0" {
     default: break
     }
 }
+
+RunLoop.main.run()
