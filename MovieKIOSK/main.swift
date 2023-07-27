@@ -174,7 +174,6 @@ while choice != "0" {
             if input == "<-" { break }
             if input == "0" { break first }
             if input == "Y" {
-                // Check if the current time is within the specified range (4:00 PM to 4:30 PM)
                 let calendar = Calendar.current
                 let startTime = calendar.date(bySettingHour: 16, minute: 30, second: 0, of: Date())!
                 let endTime = calendar.date(bySettingHour: 16, minute: 30, second: 0, of: Date())!
