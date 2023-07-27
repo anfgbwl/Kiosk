@@ -174,6 +174,16 @@ while choice != "0" {
             if input == "<-" { break }
             if input == "0" { break first }
             if input == "Y" {
+                // Check if the current time is within the specified range (4:00 PM to 4:30 PM)
+                let calendar = Calendar.current
+                let startTime = calendar.date(bySettingHour: 16, minute: 30, second: 0, of: Date())!
+                let endTime = calendar.date(bySettingHour: 16, minute: 30, second: 0, of: Date())!
+                if isCheckTime(startTime, endTime) {
+                    print("🚫 결제 가능한 시간이 아닙니다. (16:00 ~ 16:30 점검시간) 3초 뒤 메인 화면으로 이동합니다. 🚫")
+                    delay3Seconds()
+                    break first
+                }
+
                 let balance = userBalance[phoneNumber!, default: Int.random(in: 5000...50000)]
                 print("현재 고객님의 잔고는 \(balance)원 입니다")
                 let (price, discount) = (Double(time.price), movie.getPromotion())
@@ -187,16 +197,15 @@ while choice != "0" {
                 bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber!, payed: totalPrice))
                 print("\(totalPrice)원이 결제되었습니다\n현재 고객님의 잔고는 \(userBalance[phoneNumber!]!)원 입니다")
                 print("예매가 완료되었습니다")
-                Delay3Seconds()
+                delay3Seconds()
                 break first
             } else if input == "N" {
                 print("결제가 취소되었습니다")
-                Delay3Seconds()
+                delay3Seconds()
                 break first
-            }else {
+            } else {
                 print("문자 입력이 잘못되었습니다. 다시 입력해주세요.\n")
             }
-            
         }
         // 유효성 검사(6) : Y/N이 아닐때 다시 입력하라는 메세지
     }
@@ -271,11 +280,11 @@ while choice != "0" {
             if readLine()! == "Y" {
                 print(line)
                 print("티켓 출력이 완료되었습니다")
-                Delay3Seconds()
+                delay3Seconds()
                 break first
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
             } else {
-                Delay3Seconds()
+                delay3Seconds()
                 break first
             }
         case "2":
@@ -289,10 +298,10 @@ while choice != "0" {
                 print("\(pickedTicket.payed)원이 환불되었습니다\n고객님의 현재 잔고는 \(userBalance[phoneNumber!]!)원 입니다")
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
-                Delay3Seconds()
+                delay3Seconds()
                 break first
             } else {
-                Delay3Seconds()
+                delay3Seconds()
                 break first
             }
         default: break
