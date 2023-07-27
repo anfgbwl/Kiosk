@@ -3,7 +3,7 @@
 //  MovieKIOSK
 //
 //  Created by 5조 on 2023/07/24.
-//
+// 상영시간표 빠른 시간 3개 보여주기, 메인에서 함수 실행하고 선택한 이후부터는 안보이게 설정
 
 import Foundation
 
@@ -93,6 +93,9 @@ while choice != "0" {
         }
         let time = movie.timeTable[timeIndex!]
         
+        time.printRemainedSeat(time: time)
+        
+        
         
     third: while true {
         print(line)
@@ -178,6 +181,10 @@ while choice != "0" {
                 print("현재 고객님의 잔고는 \(balance)원 입니다")
                 let (price, discount) = (Double(time.price), movie.getPromotion())
                 let totalPrice = Int(price - price * discount) * headCount
+                
+                time.isRemainedSeatPrintEnabled = false
+                // false 처리 하니까 다시 예매 창으로 넘어가도 true가 아니여서 좌석 수 업데이트 안함
+                
                 if balance < totalPrice {
                     print("잔고가 부족합니다\n메인 화면으로 이동합니다")
                     break first
@@ -213,7 +220,7 @@ while choice != "0" {
         while true {
             print("조회하실 휴대폰 번호를 입력해주세요 (ex.010-0000-0000)\n\n<- : 뒤로 가기")
             if let input = readLine() {
-                if input == "<-" { break }
+                if input == "<-" { break first }
                 if input.validatePhoneNumber() {
                     phoneNumber = input
                     break

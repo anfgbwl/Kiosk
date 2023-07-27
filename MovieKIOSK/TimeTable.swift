@@ -17,6 +17,7 @@ class TimeTable {
     }
     var pickedSeat: [[String]] = Array(repeating:Array(repeating: "[ ]", count: 4), count: 3)// 이차원배열 -> 이미 예매된 자리 "x" 표시
     var remainedSeat = 12 // 남은 좌석 수
+    var isRemainedSeatPrintEnabled = true // 잔여좌석수 실시간 업데이트 제어
 
     init(_ time: String) {
         self.time = time
@@ -60,4 +61,15 @@ class TimeTable {
         }
         remainedSeat += picked.count
     }
+    
+    func printRemainedSeat(time: TimeTable) {
+        isRemainedSeatPrintEnabled = true
+        DispatchQueue.global().async {
+            while self.isRemainedSeatPrintEnabled {
+                print("잔여 좌석 수: \(time.remainedSeat)/12")
+                sleep(5) // 5초 후 업데이트
+            }
+        }
+    }
+    
 }
