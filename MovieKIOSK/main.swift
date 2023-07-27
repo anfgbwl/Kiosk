@@ -59,7 +59,6 @@ while choice != "0" {
         print(line)
         //print("예매하실 상영 시간의 번호를 입력해주세요.")
         print("[ 상영 시간표 ]\n")
-        
         // TimeTable 클래스의 인스턴스를 통해 getCurrentTime 함수 호출
         let timeTableInstance = TimeTable("00:00")
         let currentTime = timeTableInstance.getCurrentTime()
@@ -69,12 +68,13 @@ while choice != "0" {
         print("선택한 영화: \(movie.title)")
         print("현재 시간: \(currentTime)\n")
         
+        print("   [시간]  [가격] [잔여 좌석]")
         for timeTable in movie.timeTable {
             // 현재 시간과 timeTable.time을 비교하여 이후의 시간표만 출력
             if timeTable.time >= currentTime {
                 validTime += 1
                 availableList.append(timeTable)
-                print("\(validTime). \(timeTable.time) \(timeTable.price) \(timeTable.remainedSeat)/12")
+                print("\(validTime). \(timeTable.time)  \(timeTable.price)  \(timeTable.remainedSeat)/12")
             }
         }
         print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
@@ -180,6 +180,7 @@ while choice != "0" {
             if input == "Y" {
                 let balance = userBalance[phoneNumber!] ?? Int.random(in: 5000...70000)
                 userBalance[phoneNumber!, default: balance] += 0
+                print(line)
                 let (price, discount) = (Double(time.price), movie.getPromotion())
                 let totalPrice = Int(price - price * discount) * headCount
                 if balance < totalPrice {
@@ -195,6 +196,7 @@ while choice != "0" {
                 Delay3Seconds()
                 break first
             } else if input == "N" {
+                print(line)
                 print("결제가 취소되었습니다.")
                 Delay3Seconds()
                 break first
@@ -240,7 +242,8 @@ while choice != "0" {
         var pickedIndex: Int? = nil
         print(line)
         print("[ 예매 내역 목록 ]\n")
-        print("티켓을 출력/취소하실 영화 번호를 입력해주세요.")
+        print("티켓을 출력/취소하실 영화 번호를 입력해주세요.\n")
+        print("   [제목]   [시간]  [가격]  [인원]  [좌석]")
         list.enumerated().forEach { print("\($0.0+1). ", terminator: ""); $0.1.displayTicket() }
         print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         while pickedIndex == nil {
