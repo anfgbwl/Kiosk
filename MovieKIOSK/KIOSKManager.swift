@@ -45,8 +45,9 @@ extension String {
 }
 
 func delay3Seconds() {
+    print("\n⏱️ 3초 후 메인 화면으로 이동합니다.")
     DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-        print("\n메인 화면으로 이동합니다")
+        
     }
     RunLoop.current.run(until: Date().addingTimeInterval(3))
 }
