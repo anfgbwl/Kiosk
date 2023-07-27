@@ -16,14 +16,18 @@ func printMessage() {
     var validTime = 0
     
     print("\n현재 시간: \(currentTime)\n")
+    print("----------------------------------")
+    print("       🍿 가장 빠른 상영작 🍿")
     for movie in movieList {
         for m in movie.timeTable {
             if m.time >= currentTime {
-                print("\(movie.title) \(m.time)  \(m.price)  \(m.remainedSeat)/12")
+                print("   \(movie.title) \(m.time)  \(m.price)  \(m.remainedSeat)/12")
                 break
             }
         }
     }
+    print("----------------------------------")
+
 }
 
 let timer = DispatchSource.makeTimerSource()
@@ -71,7 +75,6 @@ while choice != "0" {
                     break
                 }
             }
-            //print(errorLine)
             print("❌잘못된 입력입니다. 영화 번호를 다시 입력해주세요.❌")
         } while movieIndex == nil
         let movie = movieList[movieIndex!]
@@ -342,5 +345,3 @@ while choice != "0" {
     default: break
     }
 }
-
-RunLoop.main.run()
