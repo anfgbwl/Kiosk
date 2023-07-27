@@ -10,7 +10,7 @@ import Foundation
 var movieList: [Movie] = [Elemental(), Barbie(), Conan(), Insidious()]
 var userBalance = [String: Int]()
 
-print("\n5조 영화관에 오신걸 환영합니다")
+print("\n\t🎬🍿\n[5조 영화관에 오신걸 환영합니다🥳]")
 
 var choice = "-1"
 while choice != "0" {
@@ -25,8 +25,8 @@ while choice != "0" {
     case "0":
         print("0번 선택: 프로그램 종료")
     default:
-        print(errorLine)
-        print("잘못된 입력입니다. 메뉴 번호를 똑바로 보고 다시 입력해주세요.")
+        //print(errorLine)
+        print("❌잘못된 입력입니다. 메뉴 번호를 똑바로 보고 다시 입력해주세요.❌")
     }
     // 유효성 검사(1) : 1,2,0 외 번호 입력 시 오류문 출력 후 재 안내/ 일단 완료
     
@@ -35,8 +35,9 @@ while choice != "0" {
     case "1":
     first: while true {
         print(line)
-        print("예매 차트\n예매하실 영화의 번호를 입력해주세요")
+        print("[ 예매 차트 ]\n")
         movieList.enumerated().forEach({ print("\($0.0+1). \($0.1.title)")})
+        //print("예매하실 영화의 번호를 입력해주세요.")
         print("\n<- : 뒤로 가기")
         var movieIndex: Int?
         repeat {
@@ -47,8 +48,8 @@ while choice != "0" {
                     break
                 }
             }
-            print(errorLine)
-            print("잘못된 입력입니다. 영화 번호를 다시 입력해주세요.")
+            //print(errorLine)
+            print("❌잘못된 입력입니다. 영화 번호를 다시 입력해주세요.❌")
         } while movieIndex == nil
         let movie = movieList[movieIndex!]
         // 유효성 검사(2) : 1,2,3,4 외 번호 입력 시 오류문 출력 후 재 안내/ 일단 완료
@@ -56,7 +57,8 @@ while choice != "0" {
         
     second: while true {
         print(line)
-        print("예매하실 상영 시간의 번호를 입력해주세요")
+        //print("예매하실 상영 시간의 번호를 입력해주세요.")
+        print("[ 상영 시간표 ]\n")
         
         // TimeTable 클래스의 인스턴스를 통해 getCurrentTime 함수 호출
         let timeTableInstance = TimeTable("00:00")
@@ -64,7 +66,8 @@ while choice != "0" {
         var validTime = 0
         var availableList: [TimeTable] = []
         
-        print("현재 시간: \(currentTime)")
+        print("선택한 영화: \(movie.title)")
+        print("현재 시간: \(currentTime)\n")
         
         for timeTable in movie.timeTable {
             // 현재 시간과 timeTable.time을 비교하여 이후의 시간표만 출력
@@ -87,7 +90,7 @@ while choice != "0" {
                     timeIndex = movie.timeTable.firstIndex(where: {$0.time == availableList[inputInt-1].time}) //fixed
                     break
                 } else {
-                    print("예매하실 상영 시간의 번호를 확인해주세요.")
+                    print("❌예매하실 상영 시간의 번호를 확인해주세요.❌")
                 }
             }
         }
@@ -97,8 +100,8 @@ while choice != "0" {
     third: while true {
         print(line)
         var headCount: Int = 0
+        print("예매하실 인원 수를 입력해주세요. (최대 3인)\n\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         while true {
-            print("예매하실 인원 수를 입력해주세요. (최대 3인)\n\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
             if let inputHeadCount = readLine() {
                 if inputHeadCount == "<-" { break third }
                 if inputHeadCount == "0" { break first }
@@ -107,7 +110,7 @@ while choice != "0" {
                     headCount = input
                     break
                 }
-                print("예매인원을 확인해주세요.\n")
+                print("❌예매인원을 확인해주세요.❌")
             }
         }
         // 유효성 검사(3) : 예매인원 설정(최대 3인)
@@ -117,26 +120,27 @@ while choice != "0" {
         
     fourth: while true {
         var selectedSeat: String
-        repeat {
-            print(line)
-            print("좌석을 선택해 주세요 (ex.A1 A2 A3)")
-            print("    1  2  3  4")
-            for (i, pick) in time.pickedSeat.enumerated() {
-                print([" A ", " B ", " C "][i], terminator: "")
-                for p in pick {
-                    print(p, terminator: "")
-                }
-                print("")
+        print(line)
+        print("[ 좌석 배치도 ]\n")
+        print("좌석을 선택해 주세요 (ex.A1 A2 A3)")
+        print("    1  2  3  4")
+        for (i, pick) in time.pickedSeat.enumerated() {
+            print([" A ", " B ", " C "][i], terminator: "")
+            for p in pick {
+                print(p, terminator: "")
             }
-            print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
+            print("")
+        }
+        print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
+        repeat {
             selectedSeat = readLine()!
             if selectedSeat == "<-" { break fourth }
             if selectedSeat == "0" { break first }
 
             if !selectedSeat.validateSeat(headCount: headCount) {
-                print("잘못 입력했습니다. 다시 입력해주세요.\n")
+                print("❌잘못 입력했습니다. 다시 입력해주세요.❌")
             } else if !selectedSeat.isSeatAlreadySelected(pickedSeat: time.pickedSeat) {
-                print("이미 선택된 좌석입니다. 다른 좌석을 선택해주세요.\n")
+                print("❌이미 선택된 좌석입니다. 다른 좌석을 선택해주세요.❌")
             } else {
                 break
             }
@@ -152,8 +156,8 @@ while choice != "0" {
     fifth: while true {
         print(line)
         var phoneNumber: String?
+        print("회원님의 휴대전화 번호를 입력해주세요. (ex.010-0000-0000)\n\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         while true {
-            print("회원님의 휴대전화 번호를 입력해주세요 (ex.010-0000-0000)\n\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
             if let input = readLine() {
                 if input == "<-" { break fifth }
                 if input == "0" { break first }
@@ -162,39 +166,40 @@ while choice != "0" {
                     break
                 }
             }
-            print("휴대전화 번호의 형식이 올바르지 않습니다\n")
+            print("❌휴대전화 번호의 형식이 올바르지 않습니다.❌")
         }
         // 유효성 검사(5) : 입력값 검증(숫자, 구분자 "-")
         
         
         print(line)
+        print("결제를 진행하시겠습니까? (Y/N)\n\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         while true {
-            print("결제를 진행하시겠습니까? (Y/N)\n\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
             let input = readLine()!
             if input == "<-" { break }
             if input == "0" { break first }
             if input == "Y" {
-                let balance = userBalance[phoneNumber!, default: Int.random(in: 5000...50000)]
-                print("현재 고객님의 잔고는 \(balance)원 입니다")
+                let balance = userBalance[phoneNumber!] ?? Int.random(in: 5000...70000)
+                userBalance[phoneNumber!, default: balance] += 0
                 let (price, discount) = (Double(time.price), movie.getPromotion())
                 let totalPrice = Int(price - price * discount) * headCount
                 if balance < totalPrice {
-                    print("잔고가 부족합니다\n메인 화면으로 이동합니다")
+                    print("현재 잔고는 \(balance)원으로 \(totalPrice-balance)원이 부족합니다.")
+                    Delay3Seconds()
                     break first
                 }
-                userBalance[phoneNumber!, default: balance] -= totalPrice
+                userBalance[phoneNumber!]! -= totalPrice
                 time.updateSeat(picked: selectedSeat)
                 bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber!, payed: totalPrice))
-                print("\(totalPrice)원이 결제되었습니다\n현재 고객님의 잔고는 \(userBalance[phoneNumber!]!)원 입니다")
-                print("예매가 완료되었습니다")
+                print("\(totalPrice)원이 결제되어 현재 고객님의 잔고는 \(userBalance[phoneNumber!]!)원 입니다.")
+                print("예매가 완료되었습니다.")
                 Delay3Seconds()
                 break first
             } else if input == "N" {
-                print("결제가 취소되었습니다")
+                print("결제가 취소되었습니다.")
                 Delay3Seconds()
                 break first
             }else {
-                print("문자 입력이 잘못되었습니다. 다시 입력해주세요.\n")
+                print("❌문자 입력이 잘못되었습니다. 다시 입력해주세요.❌")
             }
             
         }
@@ -208,18 +213,18 @@ while choice != "0" {
     case "2":
     first: while true {
         print(line)
-        print("예매 내역 조회\n")
+        print("[ 회원 조회 ]\n")
         var phoneNumber: String?
+        print("조회하실 휴대폰 번호를 입력해주세요. (ex.010-0000-0000)\n\n<- : 뒤로 가기")
         while true {
-            print("조회하실 휴대폰 번호를 입력해주세요 (ex.010-0000-0000)\n\n<- : 뒤로 가기")
             if let input = readLine() {
-                if input == "<-" { break }
+                if input == "<-" { break first }
                 if input.validatePhoneNumber() {
                     phoneNumber = input
                     break
                 }
             }
-            print("휴대폰 번호의 형식이 올바르지 않습니다\n")
+            print("❌휴대폰 번호의 형식이 올바르지 않습니다.❌")
         }
         
         var list = bookedList.filter { $0.phoneNumber == phoneNumber }
@@ -234,10 +239,11 @@ while choice != "0" {
         list = bookedList.filter { $0.phoneNumber == phoneNumber }
         var pickedIndex: Int? = nil
         print(line)
+        print("[ 예매 내역 목록 ]\n")
+        print("티켓을 출력/취소하실 영화 번호를 입력해주세요.")
+        list.enumerated().forEach { print("\($0.0+1). ", terminator: ""); $0.1.displayTicket() }
+        print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         while pickedIndex == nil {
-            print("티켓을 출력/취소하실 영화 번호를 입력해주세요")
-            list.enumerated().forEach { print("\($0.0+1). ", terminator: ""); $0.1.displayTicket() }
-            print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
             if let input = readLine() {
                 if input == "<-" { break second }
                 if input == "0" { break first }
@@ -247,19 +253,16 @@ while choice != "0" {
                     break
                 }
             }
-            print(line)
-            print("유효하지 않은 입력입니다. 다시 시도해주세요.\n")
+            print("❌유효하지 않은 입력입니다. 다시 시도해주세요.❌")
         }
         
         let pickedTicket = list[pickedIndex!]
+        print(case2)
+        print("<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         
         // 유효성 검사(7) : 예매내역 없을 시 없다는 문구와 함께 자동 메인으로 돌아가기
         
-        pickedTicket.displayTicket()
-        
     third: while true {
-        print(case2)
-        print("\n<- : 뒤로 가기 / 0 : 메인 화면으로 이동")
         switch readLine()! {
         case "<-" :
             break third
@@ -270,7 +273,7 @@ while choice != "0" {
             print("티켓을 출력하시겠습니까? (Y/N)")
             if readLine()! == "Y" {
                 print(line)
-                print("티켓 출력이 완료되었습니다")
+                print("티켓 출력이 완료되었습니다.")
                 Delay3Seconds()
                 break first
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
@@ -283,10 +286,10 @@ while choice != "0" {
             print("예매를 취소하시겠습니까? (Y/N)")
             if readLine()! == "Y" {
                 print(line)
-                print("예매가 취소되었습니다")
+                print("예매가 취소되었습니다.")
                 // (유효성 이후 추가 기능) n초 뒤 메인화면으로 돌아가기
                 userBalance[phoneNumber!]! += pickedTicket.payed
-                print("\(pickedTicket.payed)원이 환불되었습니다\n고객님의 현재 잔고는 \(userBalance[phoneNumber!]!)원 입니다")
+                print("\(pickedTicket.payed)원이 환불되었습니다.\n고객님의 현재 잔고는 \(userBalance[phoneNumber!]!)원 입니다.")
                 pickedTicket.timeTable.refundSeat(picked: pickedTicket.seats)
                 bookedList.removeAll(where: {$0.hashValue() == pickedTicket.hashValue()})
                 Delay3Seconds()
@@ -295,7 +298,7 @@ while choice != "0" {
                 Delay3Seconds()
                 break first
             }
-        default: break
+        default: print("❌유효하지 않은 입력입니다. 다시 시도해주세요.❌")
         }
     }
     }
