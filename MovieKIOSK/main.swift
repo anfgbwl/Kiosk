@@ -38,10 +38,16 @@ while choice != "0" {
         print("예매 차트\n예매하실 영화의 번호를 입력해주세요")
         movieList.enumerated().forEach({ print("\($0.0+1). \($0.1.title)")})
         print("\n<- : 뒤로 가기")
+        
+        var time = TimeTable("00:00")
+        time.getNearestMovies()
+                
         var movieIndex: Int?
         repeat {
             if let input = readLine() {
-                if input == "<-" { break first }
+                if input == "<-" {
+                    time.isNearestMovies = false
+                    break first }
                 if let index = Int(input), index >= 1 && index <= movieList.count {
                     movieIndex = index - 1
                     break
@@ -93,9 +99,6 @@ while choice != "0" {
         }
         let time = movie.timeTable[timeIndex!]
         
-        time.printRemainedSeat(time: time)
-        
-        
         
     third: while true {
         print(line)
@@ -107,6 +110,7 @@ while choice != "0" {
                 if inputHeadCount == "0" { break first }
                 
                 if let input = Int(inputHeadCount), (1...3).contains(input) {
+                    time.isNearestMovies = false
                     headCount = input
                     break
                 }
@@ -182,8 +186,8 @@ while choice != "0" {
                 let (price, discount) = (Double(time.price), movie.getPromotion())
                 let totalPrice = Int(price - price * discount) * headCount
                 
-                time.isRemainedSeatPrintEnabled = false
-                // false 처리 하니까 다시 예매 창으로 넘어가도 true가 아니여서 좌석 수 업데이트 안함
+//                time.isRemainedSeatPrintEnabled = false
+//                // false 처리 하니까 다시 예매 창으로 넘어가도 true가 아니여서 좌석 수 업데이트 안함
                 
                 if balance < totalPrice {
                     print("잔고가 부족합니다\n메인 화면으로 이동합니다")

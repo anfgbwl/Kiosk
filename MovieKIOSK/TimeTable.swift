@@ -17,8 +17,9 @@ class TimeTable {
     }
     var pickedSeat: [[String]] = Array(repeating:Array(repeating: "[ ]", count: 4), count: 3)// 이차원배열 -> 이미 예매된 자리 "x" 표시
     var remainedSeat = 12 // 남은 좌석 수
-    var isRemainedSeatPrintEnabled = true // 잔여좌석수 실시간 업데이트 제어
+    var isNearestMovies = true
 
+    
     init(_ time: String) {
         self.time = time
     }
@@ -62,12 +63,26 @@ class TimeTable {
         remainedSeat += picked.count
     }
     
-    func printRemainedSeat(time: TimeTable) {
-        isRemainedSeatPrintEnabled = true
+    func getNearestMovies() {
+        isNearestMovies = true
+        let currentTime = self.getCurrentTime()
+        let nearestMovies = movieList.filter { $0.timeTable.contains { $0.time >= currentTime } }
+                                          .prefix(3)
         DispatchQueue.global().async {
-            while self.isRemainedSeatPrintEnabled {
-                print("잔여 좌석 수: \(time.remainedSeat)/12")
-                sleep(5) // 5초 후 업데이트
+            while self.isNearestMovies {
+                if !nearestMovies.isEmpty {
+                    print("빠른 예매")
+                    nearestMovies.forEach { movie in
+                        if let firstTime = movie.timeTable.first {
+                            print("\(movie.title) \(firstTime.time) \(firstTime.remainedSeat)/12")
+                        } else {
+                            print("현재 상영 중인 영화가 없습니다.")
+                        }
+                    }
+                } else {
+                    print("현재 상영 중인 영화가 없습니다.")
+                }
+                sleep(5)
             }
         }
     }
