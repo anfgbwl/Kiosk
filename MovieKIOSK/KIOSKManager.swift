@@ -24,8 +24,13 @@ extension String {
         
         let seatPattern = "^[A-C][1-4]$"
         let predicate = NSPredicate(format:"SELF MATCHES %@", seatPattern)
+        
+        var seatSet = Set<String>()
+        
         for seat in selectedSeats {
             if !predicate.evaluate(with: seat) { return false }
+            if seatSet.contains(seat) { return false }
+            else { seatSet.insert(seat) }
         }
         return true
     }

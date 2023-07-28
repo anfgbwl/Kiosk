@@ -85,7 +85,7 @@ while choice != "0" {
         print("선택한 영화: \(movie.title)")
         print("현재 시간: \(currentTime)\n")
         
-        print("   [시간]  [가격] [잔여 좌석]")
+        print("   [시간]  [가격]  [잔여석]")
         for timeTable in movie.timeTable {
             if timeTable.time >= currentTime {
                 validTime += 1
@@ -173,7 +173,7 @@ while choice != "0" {
                     break
                 }
             }
-            print("❌휴대전화 번호의 형식이 올바르지 않습니다.❌")
+            print("❌ 휴대전화 번호의 형식이 올바르지 않습니다. ❌")
         }
         
         print(line)
@@ -194,13 +194,13 @@ while choice != "0" {
                 }
                 
                 
-                let balance = userBalance[phoneNumber!] ?? Int.random(in: 5000...70000)
+                let balance = userBalance[phoneNumber!] ?? Int.random(in: 5...70)*1000
                 userBalance[phoneNumber!, default: balance] += 0
                 print(line)
                 let (price, discount) = (Double(time.price), movie.getPromotion())
                 let totalPrice = Int(price - price * discount) * headCount
                 if balance < totalPrice {
-                    print("현재 잔고는 \(balance)원으로 \(totalPrice-balance)원이 부족합니다.")
+                    print("현재 잔고는 \(balance)원으로 \(totalPrice-balance)원이 부족하여 결제가 취소되었습니다.")
                     delay3Seconds()
                     break first
                 }
