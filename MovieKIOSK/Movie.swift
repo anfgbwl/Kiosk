@@ -17,7 +17,6 @@ class Movie {
     }
     
     func getPromotion() -> Double {
-        print("프로모션이 존재하지 않습니다")
         return 0
     }
 }
@@ -28,7 +27,7 @@ class Elemental: Movie {
     }
 
     override func getPromotion() -> Double {
-        print("해당 영화는 [20%] 할인이 적용됩니다.")
+        print("\n\n✅ [프로모션]: 결제 시 [20%] 할인이 적용됩니다.")
         return 0.2
     }
 }
@@ -39,7 +38,7 @@ class Barbie: Movie {
     }
     
     override func getPromotion() -> Double {
-        print("증정품 [바비인형]을 수령하실 수 있습니다.")
+        print("\n\n✅ [프로모션]: 증정품 [바비인형]을 수령하실 수 있습니다.")
         return 0
     }
 }
@@ -51,7 +50,7 @@ class Conan: Movie {
     }
     
     override func getPromotion() -> Double {
-        print("증정품 [포토 티켓]을 수령하실 수 있습니다.")
+        print("\n\n✅ [프로모션]: 증정품 [포토 티켓]을 수령하실 수 있습니다.")
         return 0
     }
 }

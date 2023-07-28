@@ -23,7 +23,7 @@ class TimeTable {
         return 18000 // 일반 가격
     }
     
-    var pickedSeat: [[String]] = Array(repeating:Array(repeating: "[ ]", count: 4), count: 3) // 이차원배열 -> 이미 예매된 자리 "x" 표시
+    var pickedSeat: [[String]] = Array(repeating:Array(repeating: "[ ]", count: 4), count: 3) // 예매된 자리 [X] 표시
     var remainedSeat = 12 // 남은 좌석 수
 
     init(_ time: String) {

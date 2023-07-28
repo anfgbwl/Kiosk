@@ -72,6 +72,7 @@ while choice != "0" {
             print("❌ 잘못된 입력입니다. 영화 번호를 다시 입력해주세요. ❌")
         } while movieIndex == nil
         let movie = movieList[movieIndex!]
+        let discount = movie.getPromotion()
         
     second: while true {
         print(line)
@@ -103,7 +104,7 @@ while choice != "0" {
                 } else if input == "0" {
                     break first
                 } else if let inputInt = Int(input), 1...validTime ~= inputInt {
-                    timeIndex = movie.timeTable.firstIndex(where: {$0.time == availableList[inputInt-1].time}) //fixed
+                    timeIndex = movie.timeTable.firstIndex(where: {$0.time == availableList[inputInt-1].time})
                     break
                 } else {
                     print("❌ 예매하실 상영 시간의 번호를 확인해주세요. ❌")
@@ -111,7 +112,7 @@ while choice != "0" {
             }
         }
         let time = movie.timeTable[timeIndex!]
-        
+        let price = Double(time.price)
         
     third: while true {
         print(line)
@@ -197,17 +198,19 @@ while choice != "0" {
                 let balance = userBalance[phoneNumber!] ?? Int.random(in: 5...70)*1000
                 userBalance[phoneNumber!, default: balance] += 0
                 print(line)
-                let (price, discount) = (Double(time.price), movie.getPromotion())
                 let totalPrice = Int(price - price * discount) * headCount
                 if balance < totalPrice {
-                    print("현재 잔고는 \(balance)원으로 \(totalPrice-balance)원이 부족하여 결제가 취소되었습니다.")
+                    print("현재 잔고는 [\(balance)원]으로 [\(totalPrice-balance)원]이 부족하여 결제가 취소되었습니다.")
                     delay3Seconds()
                     break first
                 }
                 userBalance[phoneNumber!]! -= totalPrice
                 time.updateSeat(picked: selectedSeat)
                 bookedList.append(Ticket(title: movie.title, timeTable: time, headCount: headCount, seats: selectedSeat, phoneNumber: phoneNumber!, payed: totalPrice))
-                print("\(totalPrice)원이 결제되어 현재 고객님의 잔고는 \(userBalance[phoneNumber!]!)원 입니다.")
+                if discount > 0 {
+                    print("[\(time.price * headCount)원]에서 [\(Int(discount * 100))%] 할인되어 ", terminator: "")
+                }
+                print("[\(totalPrice)원]이 결제되었습니다.\n현재 고객님의 잔고는 [\(userBalance[phoneNumber!]!)원] 입니다.")
                 print("예매가 완료되었습니다.")
                 delay3Seconds()
                 break first
