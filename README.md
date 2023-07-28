@@ -23,10 +23,10 @@
 ## 👫🏻 팀원 구성
 <table>
   <tbody>
-      <td align="center"><a href="https://github.com/anfgbwl"><img src="https://github.com/anfgbwl/Kiosk/assets/53863005/b093acc9-050e-4141-a799-e8d845b9180d"width="100px;" alt=""/><br /><sub><b>팀장 : 김서온</b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/JayBadass"><img src="https://github.com/anfgbwl/Kiosk/assets/53863005/39e5b5aa-747a-477e-8d31-0b8b40679e84" width="100px;" alt=""/><br /><sub><b>팀원 : 이종범</b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/LeeJaeheee"><img src="https://github.com/anfgbwl/Kiosk/assets/53863005/bb7ae90d-1322-4dad-920d-37a736cd857e" width="100px;" alt=""/><br /><sub><b>팀원 : 이재희</b></sub></a><br /></td>
-      <td align="center"><a href="https://github.com/Heasoobean"><img src="https://github.com/anfgbwl/Kiosk/assets/53863005/66f5a4aa-630d-4a4b-9003-b1bf8db36f99" width="100px;" alt=""/><br /><sub><b>팀원 : 허수빈</b></sub></a><br /></td>
+      <td align="center"><img src="https://github.com/anfgbwl/Kiosk/assets/53863005/b093acc9-050e-4141-a799-e8d845b9180d"width="100px;" alt=""/><br /><sub><a href="https://github.com/anfgbwl"><b>팀장 : 김서온</b></sub></a><br /></td>
+      <td align="center"><img src="https://github.com/anfgbwl/Kiosk/assets/53863005/39e5b5aa-747a-477e-8d31-0b8b40679e84" width="100px;" alt=""/><br /><sub><a href="https://github.com/JayBadass"><b>팀원 : 이종범</b></sub></a><br /></td>
+      <td align="center"><img src="https://github.com/anfgbwl/Kiosk/assets/53863005/bb7ae90d-1322-4dad-920d-37a736cd857e" width="100px;" alt=""/><br /><sub><a href="https://github.com/LeeJaeheee"><b>팀원 : 이재희</b></sub></a><br /></td>
+      <td align="center"><img src="https://github.com/anfgbwl/Kiosk/assets/53863005/66f5a4aa-630d-4a4b-9003-b1bf8db36f99" width="100px;" alt=""/><br /><sub><a href="https://github.com/Heasoobean"><b>팀원 : 허수빈</b></sub></a><br /></td>
   </tbody>
 </table>
 
